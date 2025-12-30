@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.3.0",
-    "generatedAt": "2025-12-30T06:34:04.846Z",
+    "version": "1.4.0",
+    "generatedAt": "2025-12-30T06:52:37.367Z",
     "templateType": "fullpage_scroll",
     "propertyId": "f2fe6f1e-59f1-4451-8a7d-502abd8767be",
     "homepageId": "527ccee0-1571-4a24-bf24-84ba954e9d57"
@@ -397,20 +397,44 @@
     ],
     "refundPolicies": [
       {
-        "refundProcessingDays": 7,
+        "refundProcessingDays": 10,
         "refundRate": 100
       },
       {
-        "refundProcessingDays": 5,
+        "refundProcessingDays": 9,
+        "refundRate": 90
+      },
+      {
+        "refundProcessingDays": 8,
         "refundRate": 80
       },
       {
-        "refundProcessingDays": 3,
+        "refundProcessingDays": 7,
+        "refundRate": 70
+      },
+      {
+        "refundProcessingDays": 6,
+        "refundRate": 60
+      },
+      {
+        "refundProcessingDays": 5,
         "refundRate": 50
       },
       {
-        "refundProcessingDays": 1,
+        "refundProcessingDays": 4,
+        "refundRate": 40
+      },
+      {
+        "refundProcessingDays": 3,
         "refundRate": 30
+      },
+      {
+        "refundProcessingDays": 2,
+        "refundRate": 20
+      },
+      {
+        "refundProcessingDays": 1,
+        "refundRate": 10
       },
       {
         "refundProcessingDays": 0,
@@ -428,6 +452,20 @@
           {
             "id": "069f67d7-2b4c-4a7a-857e-09a73987c202",
             "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/thumbnail/1767057539318-abx97n6qeo6.jpg",
+            "sortOrder": 2,
+            "description": "",
+            "isSelected": false
+          },
+          {
+            "id": "d9b1e5fd-e2a8-4b72-807f-17e0c0e3cc46",
+            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/thumbnail/1767077393466-l6q85bfxzx7.jpg",
+            "sortOrder": 1,
+            "description": "",
+            "isSelected": false
+          },
+          {
+            "id": "65e1cf1b-e933-4ad4-ace4-456d36d40feb",
+            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/thumbnail/1767077393466-4dymcywd698.jpg",
             "sortOrder": 0,
             "description": "",
             "isSelected": true
@@ -458,7 +496,7 @@
           {
             "id": "858e7897-7de4-40c3-9a0d-e38a82609a9c",
             "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/exterior/1767057539323-9rs7etpxkvm.jpg",
-            "sortOrder": 1,
+            "sortOrder": 0,
             "description": "",
             "isSelected": false
           },
@@ -480,13 +518,6 @@
             "id": "3b74deac-7cf8-4f3a-b4d6-32085db60afc",
             "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/exterior/1767057539324-tnp0pgra7s.jpg",
             "sortOrder": 6,
-            "description": "",
-            "isSelected": true
-          },
-          {
-            "id": "c1622353-7fe1-4063-9881-ba5bac3b80ab",
-            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/exterior/1767057539322-yafe0mfnsq.jpg",
-            "sortOrder": 1,
             "description": "",
             "isSelected": true
           },
@@ -529,6 +560,13 @@
             "id": "0fa18b16-a5a1-4751-a552-f73fde675715",
             "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/exterior/1767057539325-5t6revxqx42.jpg",
             "sortOrder": 12,
+            "description": "",
+            "isSelected": true
+          },
+          {
+            "id": "c1622353-7fe1-4063-9881-ba5bac3b80ab",
+            "url": "https://jlnjajtcnyqupfaqjerz.supabase.co/storage/v1/object/public/app-images/property/f2fe6f1e-59f1-4451-8a7d-502abd8767be/exterior/1767057539322-yafe0mfnsq.jpg",
+            "sortOrder": 1,
             "description": "",
             "isSelected": true
           }
@@ -2624,9 +2662,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
@@ -2644,9 +2682,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
@@ -2664,9 +2702,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
@@ -2684,9 +2722,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
@@ -2704,9 +2742,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
@@ -2724,9 +2762,9 @@
                   "images": []
                 },
                 "experience": {
+                  "benefits": [],
                   "features": [],
-                  "additionalInfos": [],
-                  "benefits": []
+                  "additionalInfos": []
                 }
               }
             ]
