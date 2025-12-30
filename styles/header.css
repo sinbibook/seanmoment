@@ -1,0 +1,485 @@
+/* ================================
+   Transparent Header
+   ================================ */
+.transparent-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 10000; /* Higher than menu overlay */
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.transparent-header.scrolled {
+    background: transparent;
+    backdrop-filter: none;
+}
+
+.header-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ================================
+   Menu Button (Right)
+   ================================ */
+.menu-toggle {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #fff;
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.menu-text {
+    color: #fff;
+    font-family: var(--font-ko-main), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+}
+
+/* When scrolled */
+.transparent-header.scrolled .menu-toggle {
+    background: var(--color-secondary);
+    border-color: var(--color-primary);
+}
+
+.transparent-header.scrolled .menu-text {
+    color: var(--color-primary);
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+}
+
+.transparent-header.scrolled .menu-toggle:hover {
+    background: var(--color-secondary);
+    opacity: 0.8;
+    border-color: var(--color-primary);
+}
+
+.menu-toggle.active .menu-text,
+body.menu-open .menu-toggle .menu-text {
+    color: var(--color-primary);
+}
+
+body.menu-open .menu-toggle {
+    background: var(--color-secondary);
+    border-color: var(--color-primary);
+}
+
+.menu-dynamic-image {
+    border-radius: 20px;
+}
+
+/* ================================
+   Left Logo
+   ================================ */
+.header-logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.logo-img {
+    width: 150px;
+    height: auto;
+    /* No filter at top, dark green when scrolled */
+    filter: none;
+    transition: filter 0.3s ease;
+}
+
+/* Logo image changes to dark green when scrolled */
+.transparent-header.scrolled .logo-img {
+    filter: brightness(0) sepia(1) saturate(100%) hue-rotate(120deg) brightness(0.3) contrast(1.2);
+}
+
+/* Logo image changes to rgb(99, 89, 85) when menu is active */
+body.menu-open .transparent-header .logo-img {
+    filter: brightness(0) sepia(1) saturate(100%) hue-rotate(10deg) brightness(0.5) contrast(0.9);
+}
+
+/* YBS button changes when menu is active */
+body.menu-open .ybs-booking-btn {
+    border-color: #333;
+    color: #333;
+}
+
+/* Dark Sections (Gallery & Closing) - Light Header Styles */
+body.dark-section-active .transparent-header .logo-img {
+    filter: brightness(0) invert(1);
+}
+
+body.dark-section-active .menu-toggle .menu-text {
+    color: var(--color-primary);
+}
+
+body.dark-section-active .menu-toggle .hamburger span {
+    background-color: var(--color-primary);
+}
+
+body.dark-section-active .ybs-booking-btn {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ================================
+   YBS Booking Button
+   ================================ */
+.ybs-booking-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 0;
+    color: #fff;
+    font-family: var(--font-ko-main), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ybs-booking-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.booking-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.ybs-text {
+    text-transform: uppercase;
+}
+
+/* ================================
+   Full Screen Menu Overlay
+   ================================ */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    clip-path: circle(0px at calc(100% - 60px) 40px);
+    transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.menu-overlay.active {
+    clip-path: circle(150vmax at calc(100% - 60px) 40px);
+    transition: clip-path 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-overlay-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.menu-overlay-bg.active {
+    display: block;
+}
+
+/* ================================
+   Menu Close Button
+   ================================ */
+.menu-close-btn {
+    display: none; /* Hide the custom close button */
+}
+
+/* ================================
+   Menu Content
+   ================================ */
+.menu-overlay-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Split Container */
+.menu-split-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Left Section - Menu */
+.menu-left-section {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+/* Right Section - Image */
+.menu-right-section {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 40px 0;
+}
+
+
+/* ================================
+   Menu Grid 2x2
+   ================================ */
+.menu-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 60px;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Menu Item */
+.menu-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.menu-item-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #333;
+}
+
+
+.menu-item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item-list li {
+    margin-bottom: 12px;
+}
+
+.menu-item-list a {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.menu-item:hover .menu-item-list a {
+    color: #333;
+}
+
+.menu-item-list a:hover {
+    color: #000;
+    transform: translateX(5px);
+}
+
+
+/* ================================
+   Menu Image Container
+   ================================ */
+.menu-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.menu-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.menu-item:hover ~ .menu-right-section .menu-image-container img {
+    transform: scale(1.05);
+}
+
+/* ================================
+   Mobile Responsive
+   ================================ */
+/* ================================
+   Mobile Responsive
+   ================================ */
+@media (max-width: 768px) {
+    /* 모바일에서도 헤더 표시 */
+    .transparent-header {
+        background: transparent !important;
+        display: block !important;
+    }
+
+    .header-container {
+        padding: 0 20px;
+        justify-content: space-between;
+        display: flex !important;
+    }
+
+    .header-logo {
+        display: flex !important;
+        align-items: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .logo-img {
+        display: block !important;
+        width: 120px !important;
+        height: auto !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        width: auto;
+        height: auto;
+        padding: 8px 16px;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .menu-text {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .ybs-booking-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+
+    .booking-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* 메뉴 오버레이 모바일에서 정상 작동 */
+    .menu-overlay {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .menu-overlay.active {
+        clip-path: circle(150vmax at calc(100% - 60px) 40px) !important;
+    }
+
+    /* Mobile menu layout */
+    .menu-split-container {
+        flex-direction: column;
+    }
+
+    .menu-left-section {
+        width: 100%;
+        padding: 130px 30px 0 20px;
+    }
+    
+    .menu-right-section {
+        display: none; /* Hide image on mobile */
+    }
+
+    .menu-grid-2x2 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 30px;
+        max-width: 100%;
+    }
+
+    .menu-close-btn {
+        top: 20px;
+        left: 20px;
+    }
+
+    .menu-item-title {
+        font-size: 1.25rem;
+    }
+
+    .menu-item-list a {
+        font-size: 0.9375rem;
+    }
+
+    /* Mobile Bottom Booking Buttons */
+    .mobile-booking-buttons {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        z-index: 1002;
+        display: none;
+    }
+
+    .menu-overlay.active .mobile-booking-buttons {
+        display: flex;
+    }
+
+    .mobile-booking-btn {
+        flex: 1;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #fff;
+        border-radius: 0;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-booking-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-content-bottom {
+        display: none;
+    }
+}
