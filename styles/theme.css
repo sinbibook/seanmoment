@@ -1,20 +1,9 @@
 /* CDN Fonts */
 @import url('https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css');
-@import url('https://use.typekit.net/vll4umt.css');
-
-/* Font Faces */
-@font-face {
-  font-family: 'Aritaburi';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff');
-  font-weight: 400;
-  font-display: swap;
-}
 
 /* CSS Variables */
 :root {
   --font-ko-main: 'MaruBuri', sans-serif;
-  --font-ko-sub: 'Aritaburi', sans-serif;
-  --font-en-main: 'Amandine', serif;
   --color-primary: #F5F5F5;
   --color-secondary: #5C82B4;
 }
