@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.34.0",
-    "generatedAt": "2026-11-12T02:27:04.594449035Z",
+    "version": "1.35.0",
+    "generatedAt": "2026-11-12T02:27:38.146877904Z",
     "templateType": "fullpage_visual",
     "propertyId": "f2fe6f1e-59f1-4451-8a7d-502abd8767be",
     "homepageId": "527ccee0-1571-4a24-bf24-84ba954e9d57"
@@ -29,6 +29,9 @@
     "domain": "seanmoment.kr",
     "realtimeBookingId": "https://www.bookingplay.co.kr/booking/1/10290",
     "ybsId": "32506",
+    "tripPropertyId": "10290",
+    "partnerType": "distributor_b",
+    "tripProviderName": "(주)신비서",
     "amenities": [
       "주차장",
       "흡연구역(지정장소)"
@@ -637,10 +640,7 @@
         "surrounding": [ ],
         "commonArea": [ ]
       }
-    ],
-    "tripPropertyId": "10290",
-    "partnerType": "distributor_b",
-    "tripProviderName": "(주)신비서"
+    ]
   },
   "rooms": [
     {

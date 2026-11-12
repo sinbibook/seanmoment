@@ -264,6 +264,37 @@ class HeaderFooterMapper extends BaseDataMapper {
     }
 
     /**
+     * Footer 농어촌민박사업자 이미지 매핑
+     * MAPPER: homepage.customFields.footer.ruralStayMarks (최대 두 장, 단일 ruralStayMark 호환) → [data-footer-rural-stay-mark] (구분선 아래, 사업자정보 위)
+     * 이미지가 있을 때만 노출하고, 없으면 숨겨 기존 푸터와 같다.
+     * 프리뷰는 같은 페이지에서 다시 매핑하므로 매번 표시 상태를 되돌린다.
+     */
+    mapFooterRuralStayMark() {
+        const footer = this.safeGet(this.data, 'homepage.customFields.footer') || {};
+        const marks = Array.isArray(footer.ruralStayMarks)
+            ? footer.ruralStayMarks.slice(0, 2)
+            : [footer.ruralStayMark];
+        const count = marks.filter(mark => mark && mark.url).length;
+
+        document.querySelectorAll('[data-footer-rural-stay-mark-wrap]').forEach(wrap => {
+            wrap.style.display = count ? '' : 'none';
+            wrap.querySelectorAll('[data-footer-rural-stay-mark]').forEach((img, index) => {
+                const mark = marks[index];
+                const url = mark && mark.url ? String(mark.url) : '';
+                img.style.display = url ? 'inline-block' : 'none';
+                img.style.maxWidth = count > 1 ? 'calc((100% - 12px) / 2)' : '';
+                img.style.marginLeft = index && url && marks[0] && marks[0].url ? '12px' : '';
+                if (!url) {
+                    img.removeAttribute('src');
+                    return;
+                }
+                img.src = url;
+                img.alt = (mark.description && String(mark.description).trim()) || '농어촌민박사업자';
+            });
+        });
+    }
+
+    /**
      * Footer 사업자 정보 매핑
      */
     mapFooterInfo() {
@@ -274,7 +305,8 @@ class HeaderFooterMapper extends BaseDataMapper {
         // 전화번호 매핑 - property.contactPhone 사용
         const footerPhone = this.safeSelect('[data-footer-phone]');
         if (footerPhone) {
-            const phoneNumber = this.safeGet(this.data, 'property.contactPhone');
+            // 배열/숫자로 내려오는 경우도 안전하게 문자열로 변환
+            const phoneNumber = this.sanitizeText(this.safeGet(this.data, 'property.contactPhone'));
             if (phoneNumber) {
                 footerPhone.textContent = phoneNumber;
             }
@@ -321,22 +353,24 @@ class HeaderFooterMapper extends BaseDataMapper {
             }
         }
 
-        // 저작권 정보 매핑 - 자동 생성 (현재년도 + 신비서 하드코딩)
+        // 저작권 정보 - property.tripProviderName(Trip11 공급자명) 이 있을 때만 노출한다.
+        // 값이 없으면 '신비서' 주체명이 노출되므로 기존대로 블라인드 처리한다.
         const copyrightElement = this.safeSelect('[data-footer-copyright]');
         if (copyrightElement) {
-            const currentYear = new Date().getFullYear();
-
-            // 링크 요소 생성
-            const copyrightLink = document.createElement('a');
-            copyrightLink.href = 'https://www.sinbibook.com/';
-            copyrightLink.target = '_blank';
-            copyrightLink.textContent = `© ${currentYear} 신비서. All rights reserved.`;
-            copyrightLink.style.color = 'inherit';
-            copyrightLink.style.textDecoration = 'none';
-
-            // 기존 내용을 링크로 교체
-            copyrightElement.innerHTML = '';
-            copyrightElement.appendChild(copyrightLink);
+            const provider = String(this.safeGet(this.data, 'property.tripProviderName') || '').trim();
+            if (provider) {
+                const currentYear = new Date().getFullYear();
+                const copyrightLink = document.createElement('a');
+                copyrightLink.textContent = `© ${currentYear} ${provider}. All rights reserved.`;
+                copyrightLink.style.color = 'inherit';
+                copyrightLink.style.textDecoration = 'none';
+                copyrightElement.innerHTML = '';
+                copyrightElement.appendChild(copyrightLink);
+                copyrightElement.style.display = '';
+            } else {
+                copyrightElement.innerHTML = '';
+                copyrightElement.style.display = 'none';
+            }
         }
     }
 
@@ -408,6 +442,26 @@ class HeaderFooterMapper extends BaseDataMapper {
 
     }
 
+    /** 푸터 실시간 달력: HTTP(S) 링크만 새 탭으로 연결하고 없으면 숨긴다. */
+    mapFooterCalendar() {
+        const raw = this.safeGet(this.data, 'homepage.customFields.footer.calendarUrl');
+        const value = typeof raw === 'string' ? raw.trim() : '';
+        let valid = false;
+        if (/^https?:\/\//i.test(value)) {
+            try {
+                const parsed = new URL(value);
+                valid = (parsed.protocol === 'http:' || parsed.protocol === 'https:') && !!parsed.hostname;
+            } catch (error) {
+                valid = false;
+            }
+        }
+        document.querySelectorAll('[data-footer-calendar-link]').forEach(link => {
+            link.style.display = valid ? '' : 'none';
+            if (valid) link.setAttribute('href', value);
+            else link.removeAttribute('href');
+        });
+    }
+
     /**
      * Footer 전체 매핑 실행
      */
@@ -416,8 +470,11 @@ class HeaderFooterMapper extends BaseDataMapper {
             return;
         }
 
+        this.mapFooterCalendar();
+
         // Footer 매핑
         this.mapFooterLogo();
+        this.mapFooterRuralStayMark();
         this.mapFooterInfo();
         this.mapSocialLinks();
 

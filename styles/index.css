@@ -534,16 +534,6 @@ body {
     margin: 0;
 }
 
-.room-info p {
-    font-family: var(--font-ko-sub);
-    font-weight: 500;
-    font-size: clamp(15px, 1.2vw, 18px);
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 435px;
-    margin: 0;
-}
-
 .btn-more {
     position: relative;
     font-family: var(--font-ko-main);
@@ -1203,8 +1193,15 @@ body {
         word-break: keep-all;
     }
 
-    .main-title br,
-    .main-subtitle br {
+    .main-title {
+        font-size: 25px !important;
+    }
+
+    .main-subtitle {
+        font-size: 16px;
+    }
+
+    .main-title br {
         display: none;
     }
 
@@ -1330,7 +1327,12 @@ body {
         padding: 0 20px;
     }
 
+    .section-title {
+        font-size: 33px;
+    }
+
     .section-subtitle {
+        font-size: 13px;
         line-height: 1.5;
     }
 

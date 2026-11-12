@@ -87,13 +87,13 @@ button {
 .header-logo {
     flex-shrink: 0;
     width: 210px;
-    height: 88px;
+    height: 75px;
 }
 
 .header-logo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .header-nav {
@@ -571,6 +571,10 @@ button {
 
 @media (max-width: 768px) {
 
+    .address {
+        font-size: 13px;
+    }
+
     /* --- HEADER --- */
     .site-header {
         height: 70px;
@@ -812,4 +816,60 @@ button {
     .footer-info p {
         font-size: 13px;
     }
+}
+
+/* ── 푸터 농어촌민박사업자 이미지 (템플릿 확장) ─────────────────────
+   customFields.footer.ruralStayMark 가 있을 때만 매퍼가 노출한다(마크업 기본 숨김).
+   푸터에 로고가 없어 구분선 아래 사업자정보(대표자·사업자번호) 바로 위에 독립된 줄로 둔다.
+   정렬은 사업자정보와 같게 데스크톱 오른쪽, 모바일 왼쪽.
+   표시마크 이미지는 세로형(마크 + 신고번호 박스)이라 폭을 고정(PC 180px / 모바일 160px)하고 높이는 비율에 맡긴다.
+   신고번호 글자가 읽히도록 모바일에서도 160px 아래로 줄이지 않는다. */
+.footer-rural-stay-mark-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.footer-rural-stay-mark {
+    display: block;
+    width: 180px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .footer-rural-stay-mark {
+        width: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-rural-stay-mark-wrap {
+        justify-content: flex-start;
+    }
+}
+
+/* 실시간 달력: 이 푸터의 글꼴·사업자 정보 텍스트 크기와 색을 따른다. */
+[data-footer-calendar-link][data-footer-calendar-link] {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    color: black;
+    font-family: var(--font-ko-sub, inherit);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin: 8px 0;
+    text-decoration: none;
+}
+[data-footer-calendar-link]:hover { opacity: 0.8; }
+[data-footer-calendar-link]:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (max-width: 767px) {
+    [data-footer-calendar-link][data-footer-calendar-link] { font-size: 13px; }
 }
